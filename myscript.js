@@ -3,9 +3,10 @@ let trigger = false;
 
 const container = document.querySelector(".container");
 
-function gridd() {
+// Default function to set parameters
+function createGrid() {
   let df = new DocumentFragment();
-  for (let i = 0; i < setNum * setNum; i++) {
+  for (let i = 0; i < setNum * setNum; i++) { // we multiply value with with value given by user, to createGrid
     const makeGrid = document.createElement("div");
     makeGrid.classList.add("makeGrid");
     makeGrid.textContent = "";
@@ -13,6 +14,7 @@ function gridd() {
   }
   container.appendChild(df);
 
+  //Drawing only when the mouse is held down and hovering
   let weDraw = document.querySelectorAll(".makeGrid");
   weDraw.forEach((makeGrid) => {
     
@@ -22,7 +24,7 @@ function gridd() {
    } });
   });
 }
-
+// prompt for our button, update to a slider in the future
 document.querySelector(".setNum").addEventListener("click", function () {
   let numPrompt = prompt("Provide a number between 8-64");
   if (numPrompt > 64) {
@@ -31,13 +33,13 @@ document.querySelector(".setNum").addEventListener("click", function () {
     setNum = parseInt(numPrompt);
     removeGrids();
     let htmlStyles = window.getComputedStyle(document.querySelector("html"));
-    parseInt(htmlStyles.getPropertyValue("--colNum"));
-    //container.style.gridTemplate= `repeat(${setNum}, 1fr)`;
+    parseInt(htmlStyles.getPropertyValue("--colNum")); // Changing directly to a property css
     document.documentElement.style.setProperty(`--colNum`,setNum)
-    gridd();
+    createGrid();
   }
 });
 
+// Grid reset function
 function removeGrids() {
   let removeGrids = document.querySelectorAll(".makeGrid");
   removeGrids.forEach((removeGrids) => {
@@ -45,12 +47,13 @@ function removeGrids() {
   });
 }
 
-document.addEventListener('mousedown', function() {
-    trigger = true;})
+    document.addEventListener('mousedown', function() {
+        trigger = true;
+    });
 
     document.addEventListener('mouseup', function(){
         trigger = false;
     });
     
 
-gridd();
+    createGrid();

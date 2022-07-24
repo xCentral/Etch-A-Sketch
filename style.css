@@ -1,4 +1,5 @@
-:root {
+/* set default paremeter for column size */
+:root { 
     --colNum: 8;
 }
 
@@ -10,20 +11,16 @@ align-items: center;
 
 }
 
-
 .container {
     
     margin-top: 50px;
     background-color: #f3BFb3;
     display: grid;
-   /* padding: 10px; */
+   
     user-select: none;
     width: 720px;
     height: 720px;
-   grid-template-columns: repeat(var(--colNum), 1fr);/*
-    grid-template-rows: repeat(8, 1vmax);
-    display: inline-grid; */
-    
+    grid-template-columns: repeat(var(--colNum), 1fr);    /* Getting column values from javascript */
 }
 
 .makeGrid {
